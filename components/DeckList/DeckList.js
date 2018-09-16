@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { View } from 'react-native';
+import { View, FlatList } from 'react-native';
 import { connect } from 'react-redux';
 
 import DeckItem from './DeckItem';
@@ -17,7 +17,10 @@ class DeckList extends React.Component {
     return (
       <View style={deckListStyles.container}>
         {
-          this.props.decks.map(deck => <DeckItem key={deck.title} deck={deck} />)
+          this.props.decks && <FlatList
+            data={this.props.decks}
+            renderItem={({ item }) => <DeckItem key={item.title} deck={item} />}
+          />
         }
       </View>
     );
@@ -37,7 +40,11 @@ DeckList.propTypes = {
   decks: PropTypes.arrayOf(PropTypes.shape({
     title: PropTypes.string.isRequired,
     questions: PropTypes.arrayOf(PropTypes.shape({})),
-  })).isRequired,
+  })),
+};
+
+DeckList.defaultProps = {
+  decks: null,
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(DeckList);
