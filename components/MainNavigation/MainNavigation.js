@@ -13,11 +13,9 @@ const MainNavigation = StackNavigator({
   },
   DeckView: {
     screen: DeckView,
-    navigationOptions: () => ({
+    navigationOptions: ({ navigation }) => ({
       headerTintColor: 'blue',
-      headerStyle: {
-        backgroundColor: 'blue',
-      },
+      headerTitle: navigation.state.params.deck.title,
     }),
   },
 });
