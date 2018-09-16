@@ -10,4 +10,5 @@ export const submitDeck = ({ deck, key }) =>
 
 
 export const getDecks = () =>
-  AsyncStorage.getItem(DECKS_STORAGE_KEY);
+  AsyncStorage.getItem(DECKS_STORAGE_KEY)
+    .then(JSON.parse);
