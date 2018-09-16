@@ -14,12 +14,12 @@ import styles from './styles';
 
 class AddDeck extends React.Component {
   state = {
-    name: null,
+    title: null,
   };
 
   handleOnPress = () => {
     this.props.dispatchAddDeck({
-      id: this.state.name,
+      title: this.state.title,
     });
   }
 
@@ -33,7 +33,7 @@ class AddDeck extends React.Component {
           style={styles.input}
           placeholder="Deck Title"
           editable
-          onChangeText={name => this.setState({ name })}
+          onChangeText={title => this.setState({ title })}
         />
         <TouchableOpacity style={styles.button} onPress={this.handleOnPress}>
           <Text style={styles.buttonText}>
@@ -49,13 +49,8 @@ const mapDispatchToProps = dispatch => ({
   dispatchAddDeck: deck => dispatch(addDeck(deck)),
 });
 
-const mapStateToProps = (state) => {
-  console.log(state);
-  return {};
-};
-
 AddDeck.propTypes = {
   dispatchAddDeck: PropTypes.func.isRequired,
 };
 
-export default connect(mapStateToProps, mapDispatchToProps)(AddDeck);
+export default connect(null, mapDispatchToProps)(AddDeck);
