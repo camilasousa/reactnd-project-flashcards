@@ -18,9 +18,15 @@ class AddDeck extends React.Component {
   };
 
   handleOnPress = () => {
-    this.props.dispatchAddDeck({
-      title: this.state.title,
-    });
+    this.props.dispatchAddDeck({ title: this.state.title })
+      .then(() => {
+        this.goToHome();
+        this.setState({ title: null });
+      });
+  }
+
+  goToHome = () => {
+    this.props.navigation.navigate('Decks');
   }
 
   render() {
@@ -33,6 +39,7 @@ class AddDeck extends React.Component {
           style={styles.input}
           placeholder="Deck Title"
           editable
+          value={this.state.title}
           onChangeText={title => this.setState({ title })}
         />
         <TouchableOpacity style={styles.button} onPress={this.handleOnPress}>
@@ -50,6 +57,9 @@ const mapDispatchToProps = dispatch => ({
 });
 
 AddDeck.propTypes = {
+  navigation: PropTypes.shape({
+    navigate: PropTypes.func.isRequired,
+  }).isRequired,
   dispatchAddDeck: PropTypes.func.isRequired,
 };
 

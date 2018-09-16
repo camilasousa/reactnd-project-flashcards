@@ -6,6 +6,8 @@ import DeckList from '../DeckList';
 const Home = TabNavigator({
   Decks: { screen: DeckList },
   'New deck': { screen: AddDeck },
+}, {
+  initialScreen: 'Decks',
 });
 
 export default Home;
