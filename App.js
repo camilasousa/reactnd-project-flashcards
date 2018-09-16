@@ -1,19 +1,12 @@
 import React from 'react';
 import { StatusBar, View } from 'react-native';
+import { createStore, applyMiddleware } from 'redux';
 import { Constants } from 'expo';
 import { Provider } from 'react-redux';
-import { createStore, applyMiddleware } from 'redux';
-import { TabNavigator } from 'react-navigation';
 import thunk from 'redux-thunk';
-
 import reducer from './reducers';
-import AddDeck from './components/AddDeck';
-import DeckList from './components/DeckList';
 
-const Tabs = TabNavigator({
-  Decks: { screen: DeckList },
-  'New deck': { screen: AddDeck },
-});
+import Home from './components/Home';
 
 const store = createStore(
   reducer,
@@ -32,7 +25,7 @@ const App = () => (
       <FlashcardStatusBar
         backgroundColor="blue"
       />
-      <Tabs />
+      <Home />
     </View>
   </Provider>
 );
