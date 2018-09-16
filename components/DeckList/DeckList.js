@@ -13,13 +13,23 @@ class DeckList extends React.Component {
     this.props.loadDecks();
   }
 
+  handleOnDeckItemPress = (deck) => {
+    this.props.navigation.navigate('DeckView', { deck });
+  }
+
   render() {
     return (
       <View style={deckListStyles.container}>
         {
           this.props.decks && <FlatList
             data={this.props.decks}
-            renderItem={({ item }) => <DeckItem key={item.title} deck={item} />}
+            renderItem={({ item }) => (
+              <DeckItem
+                key={item.title}
+                deck={item}
+                onPress={() => this.handleOnDeckItemPress(item)}
+              />
+            )}
           />
         }
       </View>
@@ -36,6 +46,9 @@ const mapDispatchToProps = dispatch => ({
 });
 
 DeckList.propTypes = {
+  navigation: PropTypes.shape({
+    navigate: PropTypes.func.isRequired,
+  }).isRequired,
   loadDecks: PropTypes.func.isRequired,
   decks: PropTypes.arrayOf(PropTypes.shape({
     title: PropTypes.string.isRequired,
