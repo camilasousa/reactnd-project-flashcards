@@ -1,21 +1,28 @@
 import React from 'react';
-import { StyleSheet, Text, View } from 'react-native';
+import { StatusBar, View } from 'react-native';
+import { Constants } from 'expo';
+import { Provider } from 'react-redux';
+import { createStore } from 'redux';
 
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-});
+import reducer from './reducers';
+import AddDeck from './components/AddDeck';
+
+
+const FlashcardStatusBar = ({ backgroundColor, ...props }) => (
+  <View style={{ backgroundColor, height: Constants.statusBarHeight }}>
+    <StatusBar translucent backgroundColor={backgroundColor} {...props} />
+  </View>
+);
 
 const App = () => (
-  <View style={styles.container}>
-    <Text>Open up App.js to start working on your app!</Text>
-    <Text>Changes you make will automatically reload.</Text>
-    <Text>Shake your phone to open the developer menu.</Text>
-  </View>
+  <Provider store={createStore(reducer)}>
+    <View style={{ flex: 1 }}>
+      <FlashcardStatusBar
+        backgroundColor="blue"
+      />
+      <AddDeck />
+    </View>
+  </Provider>
 );
 
 export default App;
