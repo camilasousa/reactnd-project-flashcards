@@ -23,6 +23,7 @@ class DeckList extends React.Component {
         {
           this.props.decks && <FlatList
             data={this.props.decks}
+            keyExtractor={item => item.title}
             renderItem={({ item }) => (
               <DeckItem
                 key={item.title}
