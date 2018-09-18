@@ -56,6 +56,7 @@ const mapDispatchToProps = dispatch => ({
   dispatchAddDeck: deck => dispatch(addDeck(deck)),
 });
 
+
 AddDeck.propTypes = {
   navigation: PropTypes.shape({
     navigate: PropTypes.func.isRequired,

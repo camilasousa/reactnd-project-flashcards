@@ -8,6 +8,22 @@ export const submitDeck = ({ deck, key }) =>
     [key]: deck,
   }));
 
+export const submitQuestion = ({ deckKey, question }) =>
+  AsyncStorage.getItem(DECKS_STORAGE_KEY)
+    .then(JSON.parse)
+    .then((data) => {
+      const deck = data[deckKey];
+      const questions = deck.questions || [];
+      const updatedDeck = {
+        ...deck,
+        questions: [...questions, question],
+      };
+      submitDeck({
+        deck: updatedDeck,
+        key: deckKey,
+      });
+      return updatedDeck;
+    });
 
 export const getDecks = () =>
   AsyncStorage.getItem(DECKS_STORAGE_KEY)

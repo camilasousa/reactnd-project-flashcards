@@ -15,7 +15,10 @@ const DeckView = ({ navigation }) => {
         {deck.questions ? deck.questions.length : 0} decks
       </Text>
 
-      <TouchableOpacity style={styles.addCardButton}>
+      <TouchableOpacity
+        style={styles.addCardButton}
+        onPress={() => navigation.navigate('AddQuestion', { deckKey: deck.title })}
+      >
         <Text style={styles.addCardButtonText}>
           Add Card
         </Text>

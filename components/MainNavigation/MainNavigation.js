@@ -2,6 +2,7 @@ import { StackNavigator } from 'react-navigation';
 
 import Home from '../Home';
 import DeckView from '../DeckView';
+import AddQuestion from '../AddQuestion';
 
 
 const MainNavigation = StackNavigator({
@@ -16,6 +17,13 @@ const MainNavigation = StackNavigator({
     navigationOptions: ({ navigation }) => ({
       headerTintColor: 'blue',
       headerTitle: navigation.state.params.deck.title,
+    }),
+  },
+  AddQuestion: {
+    screen: AddQuestion,
+    navigationOptions: () => ({
+      headerTintColor: 'blue',
+      headerTitle: 'Add question',
     }),
   },
 });
