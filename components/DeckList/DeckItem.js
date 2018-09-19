@@ -10,7 +10,7 @@ const DeckItem = ({ deck, onPress }) => (
     <View style={deckItemStyles.container}>
       <Text style={deckItemStyles.title}>{deck.title}</Text>
       <Text style={deckItemStyles.number}>
-        {deck.questions ? deck.questions.length : 0} decks
+        {deck.questions ? deck.questions.length : 0} questions
       </Text>
     </View>
   </TouchableOpacity>
