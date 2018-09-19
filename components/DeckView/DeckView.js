@@ -23,6 +23,21 @@ const DeckView = ({ navigation }) => {
           Add Card
         </Text>
       </TouchableOpacity>
+
+      {
+        deck.questions && deck.questions.length > 0
+          ? (
+            <TouchableOpacity
+              style={styles.addCardButton}
+              onPress={() => navigation.navigate('Quiz', { questions: deck.questions })}
+            >
+              <Text style={styles.addCardButtonText}>
+                Start Quiz
+              </Text>
+            </TouchableOpacity>
+          )
+          : null
+      }
     </View>
   );
 };
