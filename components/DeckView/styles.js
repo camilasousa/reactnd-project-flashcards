@@ -22,7 +22,15 @@ const styles = StyleSheet.create({
     paddingBottom: 6,
     backgroundColor: 'blue',
   },
-  addCardButtonText: {
+  startQuizButton: {
+    marginTop: 10,
+    paddingTop: 6,
+    paddingLeft: 16,
+    paddingRight: 16,
+    paddingBottom: 6,
+    backgroundColor: 'green',
+  },
+  buttonText: {
     color: 'white',
     fontSize: 16,
   },

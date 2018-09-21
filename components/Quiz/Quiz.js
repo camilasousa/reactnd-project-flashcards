@@ -2,15 +2,23 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { Text, TouchableOpacity, View } from 'react-native';
 
+import styles from './styles';
 
 const ResultView = ({ onOkayPress, onRestartPress, result }) => (
-  <View>
-    <Text>Your result: {result}%</Text>
-    <TouchableOpacity onPress={onOkayPress}>
-      <Text>OK</Text>
+  <View style={styles.resultContainer}>
+    <Text style={styles.resultLabel}>Your result:</Text>
+    <Text style={styles.resultPercentage}>{result}%</Text>
+    <TouchableOpacity
+      style={styles.baseButton}
+      onPress={onOkayPress}
+    >
+      <Text style={styles.buttonText}>OK</Text>
     </TouchableOpacity>
-    <TouchableOpacity onPress={onRestartPress}>
-      <Text>Restart Quiz</Text>
+    <TouchableOpacity
+      style={styles.baseButton}
+      onPress={onRestartPress}
+    >
+      <Text style={styles.buttonText}>Restart Quiz</Text>
     </TouchableOpacity>
   </View>
 );
@@ -62,7 +70,6 @@ class Quiz extends React.Component {
   render() {
     const questions = this.props.navigation.state.params.questions || [];
     const { currentIdx, showingQuestion, correctCount } = this.state;
-
     if (currentIdx === questions.length) {
       return (
         <ResultView
@@ -75,30 +82,41 @@ class Quiz extends React.Component {
 
     const currentQuestion = questions[currentIdx];
     return (
-      <View>
-        <Text>{currentIdx + 1}/{questions.length}</Text>
+      <View style={styles.questionsContainer}>
+        <Text style={styles.questionsLabel}>
+          {currentIdx + 1}/{questions.length}
+        </Text>
         {
           showingQuestion
             ? (
-              <View>
-                <Text>
+              <View style={styles.questionsContainer}>
+                <Text style={styles.card}>
                   { currentQuestion.question }
                 </Text>
-                <TouchableOpacity onPress={this.handleShowAnswer}>
-                  <Text>Answer</Text>
+                <TouchableOpacity
+                  onPress={this.handleShowAnswer}
+                  style={styles.baseButton}
+                >
+                  <Text style={styles.buttonText}>Answer</Text>
                 </TouchableOpacity>
               </View>
             )
             : (
-              <View>
-                <Text>
+              <View style={styles.questionsContainer}>
+                <Text style={styles.card}>
                   { currentQuestion.answer }
                 </Text>
-                <TouchableOpacity onPress={this.handleOnCorrectPress}>
-                  <Text> Correct </Text>
+                <TouchableOpacity
+                  style={styles.incorrectButton}
+                  onPress={this.handleOnCorrectPress}
+                >
+                  <Text style={styles.buttonText}> Correct </Text>
                 </TouchableOpacity>
-                <TouchableOpacity onPress={this.handleOnIncorrectPress}>
-                  <Text> Incorrect </Text>
+                <TouchableOpacity
+                  style={styles.correctButton}
+                  onPress={this.handleOnIncorrectPress}
+                >
+                  <Text style={styles.buttonText}> Incorrect </Text>
                 </TouchableOpacity>
               </View>
             )
