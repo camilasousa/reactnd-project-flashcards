@@ -3,11 +3,14 @@ import PropTypes from 'prop-types';
 import { Text, TouchableOpacity, View } from 'react-native';
 
 
-const ResultView = ({ onOkayPress, result }) => (
+const ResultView = ({ onOkayPress, onRestartPress, result }) => (
   <View>
     <Text>Your result: {result}%</Text>
     <TouchableOpacity onPress={onOkayPress}>
       <Text>OK</Text>
+    </TouchableOpacity>
+    <TouchableOpacity onPress={onRestartPress}>
+      <Text>Restart Quiz</Text>
     </TouchableOpacity>
   </View>
 );
@@ -15,6 +18,7 @@ const ResultView = ({ onOkayPress, result }) => (
 ResultView.propTypes = {
   onOkayPress: PropTypes.func.isRequired,
   result: PropTypes.number.isRequired,
+  onRestartPress: PropTypes.func.isRequired,
 };
 
 class Quiz extends React.Component {
@@ -47,6 +51,14 @@ class Quiz extends React.Component {
     this.props.navigation.goBack();
   }
 
+  handleRestartPress = () => {
+    this.setState({
+      currentIdx: 0,
+      correctCount: 0,
+      showingQuestion: true,
+    });
+  }
+
   render() {
     const questions = this.props.navigation.state.params.questions || [];
     const { currentIdx, showingQuestion, correctCount } = this.state;
@@ -56,6 +68,7 @@ class Quiz extends React.Component {
         <ResultView
           result={(correctCount / questions.length) * 100}
           onOkayPress={this.handleOkPress}
+          onRestartPress={this.handleRestartPress}
         />
       );
     }
