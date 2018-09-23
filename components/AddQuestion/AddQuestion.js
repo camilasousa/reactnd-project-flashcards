@@ -5,6 +5,7 @@ import { connect } from 'react-redux';
 
 import { addQuestion } from '../../actions/decks';
 
+import styles from './styles';
 
 class AddQuestion extends React.Component {
   state = {
@@ -23,21 +24,26 @@ class AddQuestion extends React.Component {
 
   render() {
     return (
-      <View>
+      <View style={styles.container}>
         <TextInput
+          style={styles.input}
           placeholder="Question"
           editable
           value={this.state.question}
           onChangeText={question => this.setState({ question })}
         />
         <TextInput
+          style={styles.input}
           placeholder="Answer"
           editable
           value={this.state.answer}
           onChangeText={answer => this.setState({ answer })}
         />
-        <TouchableOpacity onPress={this.handleOnPress}>
-          <Text>
+        <TouchableOpacity
+          style={styles.submitButton}
+          onPress={this.handleOnPress}
+        >
+          <Text style={styles.buttonText}>
             Submit
           </Text>
         </TouchableOpacity>
