@@ -44,15 +44,13 @@ class Quiz extends React.Component {
 
   handleOnCorrectPress = () => {
     this.setState(prevState => ({
-      currentIdx: prevState.currentIdx + 1,
       correctCount: prevState.correctCount + 1,
       showButtons: false,
     }), () => this.animateToQuestion());
   }
 
   handleOnIncorrectPress = () => {
-    this.setState(prevState => ({
-      currentIdx: prevState.currentIdx + 1,
+    this.setState(() => ({
       showButtons: false,
     }), () => this.animateToQuestion());
   }
@@ -100,7 +98,11 @@ class Quiz extends React.Component {
     this.state.rotate.removeAllListeners();
     this.state.rotate.addListener(({ value }) => {
       if (value === 90) {
-        this.setState({ showingQuestion: true, showButtons: true });
+        this.setState(prevState => ({
+          currentIdx: prevState.currentIdx + 1,
+          showingQuestion: true,
+          showButtons: true,
+        }));
       }
     });
   }
