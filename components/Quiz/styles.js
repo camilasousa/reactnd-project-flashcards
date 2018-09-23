@@ -51,17 +51,10 @@ const styles = StyleSheet.create({
   card: {
     backgroundColor: 'white',
     borderRadius: 6,
-    shadowOpacity: 0.4,
-    shadowColor: 'gray',
-    shadowOffset: {
-      width: 3,
-      height: 3,
-    },
     minHeight: 200,
     width: 300,
     fontSize: 18,
     textAlign: 'center',
-    elevation: 4,
     textAlignVertical: 'center',
   },
 });
