@@ -19,7 +19,7 @@ const DeckView = ({ navigation, deck }) => (
       onPress={() => navigation.navigate('AddQuestion', { deckKey: deck.title })}
     >
       <Text style={styles.buttonText}>
-        Add Card
+        Create New Question
       </Text>
     </TouchableOpacity>
 
@@ -31,7 +31,7 @@ const DeckView = ({ navigation, deck }) => (
             onPress={() => navigation.navigate('Quiz', { questions: deck.questions })}
           >
             <Text style={styles.buttonText}>
-              Start Quiz
+              Start a Quiz
             </Text>
           </TouchableOpacity>
         )

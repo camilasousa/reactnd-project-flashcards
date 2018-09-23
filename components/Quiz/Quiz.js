@@ -12,7 +12,7 @@ const ResultView = ({ onOkayPress, onRestartPress, result }) => (
       style={styles.baseButton}
       onPress={onOkayPress}
     >
-      <Text style={styles.buttonText}>OK</Text>
+      <Text style={styles.buttonText}>Back to Deck</Text>
     </TouchableOpacity>
     <TouchableOpacity
       style={styles.baseButton}
@@ -115,7 +115,7 @@ class Quiz extends React.Component {
           onPress={this.handleShowAnswer}
           style={styles.baseButton}
         >
-          <Text style={styles.buttonText}>Answer</Text>
+          <Text style={styles.buttonText}>Show Answer</Text>
         </TouchableOpacity>
       );
     }
