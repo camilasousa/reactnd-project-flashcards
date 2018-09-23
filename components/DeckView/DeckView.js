@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 import { View, Text, TouchableOpacity } from 'react-native';
 import { connect } from 'react-redux';
 
+
 import styles from './styles';
 
 const DeckView = ({ navigation, deck }) => (

@@ -1,6 +1,10 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { Text, TouchableOpacity, View, Animated } from 'react-native';
+import {
+  clearLocalNotification,
+  setLocalNotification,
+} from '../../utils/notification';
 
 import styles from './styles';
 
@@ -36,6 +40,16 @@ class Quiz extends React.Component {
     showingQuestion: true,
     rotate: new Animated.Value(0),
     showButtons: true,
+  }
+
+  componentDidUpdate(prevProps, prevState) {
+    const questions = this.props.navigation.state.params.questions || [];
+
+    if (prevState.currentIdx < questions.length
+      && this.state.currentIdx === questions.length) {
+      clearLocalNotification()
+        .then(setLocalNotification);
+    }
   }
 
   componentWillUnmount() {
