@@ -11,7 +11,7 @@ import styles from './styles';
 const ResultView = ({ onOkayPress, onRestartPress, result }) => (
   <View style={styles.resultContainer}>
     <Text style={styles.resultLabel}>Your result:</Text>
-    <Text style={styles.resultPercentage}>{result}%</Text>
+    <Text style={styles.resultPercentage}>{Math.round(result)}%</Text>
     <TouchableOpacity
       style={styles.baseButton}
       onPress={onOkayPress}
