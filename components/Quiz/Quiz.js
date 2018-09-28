@@ -33,7 +33,7 @@ ResultView.propTypes = {
   onRestartPress: PropTypes.func.isRequired,
 };
 
-class Quiz extends React.Component {
+class Quiz extends React.PureComponent {
   state = {
     currentIdx: 0,
     correctCount: 0,
