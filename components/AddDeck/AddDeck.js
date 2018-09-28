@@ -19,15 +19,14 @@ class AddDeck extends React.Component {
 
   handleOnPress = () => {
     this.props.dispatchAddDeck({ title: this.state.title })
-      .then(() => {
-        this.goToHome();
+      .then((deck) => {
+        this.goToDeck(deck);
         this.setState({ title: null });
       });
   }
 
-  goToHome = () => {
-    this.props.navigation.navigate('Decks');
-  }
+  goToDeck = deck =>
+    this.props.navigation.navigate('DeckView', { deck });
 
   render() {
     return (

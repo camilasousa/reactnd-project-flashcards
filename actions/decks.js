@@ -22,7 +22,8 @@ const updatedDeck = deck => ({
 
 export const addDeck = deck => dispatch =>
   submitDeck({ deck, key: deck.title })
-    .then(() => dispatch(addedDeck(deck)));
+    .then(() => dispatch(addedDeck(deck)))
+    .then(() => deck);
 
 export const listDecks = () => dispatch =>
   getDecks()
